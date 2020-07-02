@@ -1,0 +1,7 @@
+resources:
+  - deployment.yaml
+  - service.yaml
+namePrefix: test-
+namespace: testing
+commonLabels:
+  environment: testing
