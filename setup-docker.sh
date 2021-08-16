@@ -1,6 +1,7 @@
 #!/bin/bash
 # script that runs 
 # https://kubernetes.io/docs/setup/production-environment/container-runtime
+# random change applied
 
 yum install -y vim yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
