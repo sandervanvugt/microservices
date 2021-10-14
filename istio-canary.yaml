@@ -1,0 +1,113 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    type: canary
+    app: littlebird
+    version: v1
+  name: old-littlebird
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: littlebird
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: littlebird
+        type: canary
+        version: v1
+    spec:
+      containers:
+      - image: nginx:1.14
+        name: nginx
+        resources: {}
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: littlebird
+    type: canary
+    version: v2
+  name: new-littlebird
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: littlebird
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: littlebird
+        type: canary
+        version: v2
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        resources: {}
+        volumeMounts:
+        - name: configfile
+          mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: configfile
+        configMap:
+          name: canary
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: littlebird
+    type: canary
+  name: littlebird
+spec:
+  ports:
+  - port: 9080
+    name: http
+    protocol: TCP
+    targetPort: 80
+  selector:
+    type: canary
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Tweet tweet tweet Welcome to birdginx!</title>
+    <style>
+        body {
+            width: 35em;
+            margin: 0 auto;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+        }
+    </style>
+    </head>
+    <body>
+    <h1>Welcome to birdginx!</h1>
+
+    <p><em>Help the birds through winter!</em></p>
+    </body>
+    </html>
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: canary
