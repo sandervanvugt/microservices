@@ -1,4 +1,4 @@
-This Git repository contains supportinf files for my "Building Microservices with Containers, Kubernetes and Istio" video course. See https://sandervanvugt.com for more details. 
+This Git repository contains supporting files for my "Building Microservices with Containers, Kubernetes and Istio" video course. See https://sandervanvugt.com for more details. 
 
 The files are also used in the live class I'm teaching at https://learning.oreilly.com. 
 
