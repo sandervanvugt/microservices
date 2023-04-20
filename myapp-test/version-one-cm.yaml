@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  index.html: |
+    version 1
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-04-20T12:13:32Z"
+  name: version-one
+  namespace: default
+  resourceVersion: "153877"
+  uid: 0f50650b-83f3-409e-8285-09400030d75d
