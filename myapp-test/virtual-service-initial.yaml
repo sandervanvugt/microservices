@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webshop
+spec:
+  gateways:
+    - webshop-gateway
+  hosts:
+    - "webshop.svc.default.cluster.local"
+  http:
+  - route:
+    - destination:
+        host: webshop
+

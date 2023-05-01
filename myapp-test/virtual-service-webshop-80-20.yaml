@@ -6,7 +6,7 @@ spec:
   gateways:
     - webshop-gateway
   hosts:
-    - webshop
+    - "*"
   http:
   - route:
     - destination:

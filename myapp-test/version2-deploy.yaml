@@ -32,5 +32,5 @@ spec:
       volumes:
       - name: configfile
         configMap:
-          name: version-one
+          name: version-two
 status: {}
