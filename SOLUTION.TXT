@@ -1,6 +1,6 @@
-During the Microserices class on Dec. 14th 2023, we have experienced problems accessing the "product page" of the "bookshel" application in Istio. This problem is due to the combination of the Docker driver to run the 1.28.3 version of Kubernetes in Minikube (and is hopefully temporary. If you start a minikube cluster using another driver (on Ubuntu) it does work: minikube start --driver=kvm --memory=6G for instance. It also works as expected when using minikube on MacOS (tested on Intel): minikube --driver=vmware --memory=6G works also as expected. 
+If you were in my class on Dec. 14th 2023, you've noticed that the demo that shows the $GATEWAY_URL failed. There's a very good reason for that. In this demo I was trying to access 192.168.49.2:32505 on the / path. There's nothing listening on that path, which is why I got an empty page!!
 
-So the problem seems to be in the combination between minikube and the docker driver. Other solution might work as well, but you should try to avoid the VMware driver :-)
+Instead, test it with the /productpage path and is DOES work. So: 192.168.49.2:32505/productpage that would be in my case. 
 
-Many thanks to Mohammad T. for making this observation!
+Thank you so much Mohammad T. for pointing this out to me!
 
