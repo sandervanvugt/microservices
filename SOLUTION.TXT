@@ -1,6 +1,0 @@
-If you were in my class on Dec. 14th 2023, you've noticed that the demo that shows the $GATEWAY_URL failed. There's a very good reason for that. In this demo I was trying to access 192.168.49.2:32505 on the / path. There's nothing listening on that path, which is why I got an empty page!!
-
-Instead, test it with the /productpage path and is DOES work. So: 192.168.49.2:32505/productpage that would be in my case. 
-
-Thank you so much Mohammad T. for pointing this out to me!
-

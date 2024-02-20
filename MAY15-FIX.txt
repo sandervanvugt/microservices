@@ -1,7 +1,0 @@
-# notes for students of my Managing Microservices with Kubernetes and Istio class on May 15th
-# I overlooked creating the destination rules, which are referred to by the virtual services. To make the demo "running your own application"
-# working, make sure to apply the following steps
-
-kubectl apply -f virtual-service-webshop-80-20.yaml
-kubectl apply -f destination-rule-webshop.yaml
-curl $GATEWAY_URL # run multiple times to verify load balancing

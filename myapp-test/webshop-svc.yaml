@@ -7,8 +7,6 @@ metadata:
     version: v1
   name: webshop
   namespace: default
-  resourceVersion: "155765"
-  uid: 9af6cf8c-6b8a-453f-9bed-e1900e30e5d7
 spec:
   clusterIP: 10.106.225.111
   clusterIPs:
@@ -19,12 +17,13 @@ spec:
   ipFamilyPolicy: SingleStack
   ports:
   - port: 80
+    nodePort: 32000
     protocol: TCP
     targetPort: 80
     name: http-webshop
   selector:
     app: webshop
   sessionAffinity: None
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
