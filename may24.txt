@@ -1,0 +1,151 @@
+student@student-VMware-Virtual-Platform:~/microservices/myapp-test$ history
+    1  minikube start --vm-driver=docker --memory=6G --cni=calico
+    2  kubectl get all
+    3  ls
+    4  cd ..
+    5  history
+    6  git clone https://github.com/sandervanvugt/gitops
+    7  cd gitops/
+    8  ls
+    9  cd dockerfiledemo/
+   10  vim Dockerfile 
+   11  docker build -t docker.io/sandervanvugt/fridaymay31:1.0
+   12  docker build -t docker.io/sandervanvugt/fridaymay31:1.0 .
+   13  docker push docker.io/sandervanvugt/fridaymay31:1.0
+   14  sudo apt update
+   15  sudo apt install docker-compose
+   16  cd ..
+   17  ls
+   18  cd ../microservices/
+   19  ls
+   20  cat docker-compose.yml 
+   21  docker-compose up
+   22  history
+   23  source <(kubectl completion bash)
+   24  kubectl create deploy --image=nginx --replicas=3
+   25  kubectl create deploy testone --image=nginx --replicas=3
+   26  kubectl get all
+   27  kubectl get pods -o wide
+   28  kubectl expose deploy testone --port=80
+   29  kubectl get svc
+   30  kubectl edit svc testone 
+   31  kubectl get svc
+   32  minikube ip
+   33  curl 192.168.49.2:31063
+   34  history
+   35  sudo apt install docker-compose-plugin
+   36  cat deployment.yaml 
+   37  cat service.yaml 
+   38  kubectl apply -f deployment.yaml 
+   39  kubectl apply -f service.yaml 
+   40  kubectl get all
+   41  cat kustomization.yaml 
+   42  kubectl get all --show-labels
+   43  kubectl apply -k .
+   44  kubectl get all
+   45  kubectl get all --show-labels
+   46  cd ../gitops/
+   47  ls
+   48  cd ../microservices/
+   49  ls
+   50  docker compose 
+   51  docker compose up
+   52  ls
+   53  kubectl get storageclass
+   54  cat pvc.yaml 
+   55  kubectl get pvc,pv
+   56  kubectl apply -f pvc.yaml 
+   57  kubectl get pvc,pv
+   58  history
+   59  ./countdown 12
+   60  cd lab6
+   61  ls
+   62  cd lesson6lab/
+   63  ls
+   64  less default-storageclass.yaml 
+   65  less mysql-deployment.yaml 
+   66  less wordpress-deployment.yaml 
+   67  less kustomization.yaml 
+   68  kubectl apply -k .
+   69  kubectl get secrets
+   70  kubectl get deploy
+   71  kubectl get pvc
+   72  kubectl get pods
+   73  kubectl get svc
+   74  minikube service wordpress --url
+   75  kubectl delete all -A
+   76  kubectl delete all all -A
+   77  kubectl delete all all
+   78  kubectl delete deployments.apps 
+   79  kubectl delete deployments.apps nginx-friday20 
+   80  kubectl delete deployments.apps test-nginx-friday20 
+   81  kubectl delete deployments.apps testone 
+   82  kubectl delete all --all
+   83  kubectl get all
+   84  kubectl get all -n kube-system 
+   85  curl -L https://istio.io/downloadIstio | sh -
+   86  cd istio-1.22.0/
+   87  ls
+   88  sudo cp bin/istioctl /usr/bin/
+   89  istioctl --set profile=demo -y
+   90  istioctl --set-profile=demo -y
+   91  istioctl install --set profile=demo -y
+   92  kubectl get all -n istio-system 
+   93  kubectl label ns default istio-injection=enabled
+   94  kubectl get crds
+   95  cd
+   96  kubectl run testpod --image=nginx
+   97  kubectl get pods
+   98  kubectl get pods testpod -o yaml | less
+   99  cd microservices/
+  100  ./countdown 13
+  101  kubectl get pods
+  102  kubectl get pods -o yaml | less
+  103  kubectl get svc -n istio-system 
+  104  cd myapp-test/
+  105  ls
+  106  cat version-one-cm.yaml 
+  107  kubectl apply -f version-one-cm.yaml 
+  108  kubectl apply -f version-two-cm.yaml 
+  109  kubectl apply -f version-three-cm.yaml 
+  110  less version1-deploy.yaml 
+  111  kubectl apply -f version1-deploy.yaml 
+  112  kubectl apply -f version2-deploy.yaml 
+  113  kubectl apply -f version3-deploy.yaml 
+  114  kubectl get all
+  115  vim webshop-svc.yaml 
+  116  kubectl get pods --show-labels
+  117  kubectl apply -f webshop-svc.yaml 
+  118  kubectl get endpoints
+  119  curl 192.168.49.2:32000
+  120  kubectl get all -n istio-system 
+  121  kubectl edit -n istio-system svc istio-ingressgateway 
+  122  kubectl get all -n istio-system 
+  123  ls
+  124  vim ../setup_istio_vars.sh 
+  125  source ../setup_istio_vars.sh 
+  126  echo $GATEWAY_URL
+  127  kubectl get svc -n istio-system 
+  128  vim webshop-gateway.yaml 
+  129  kubectl apply -f webshop-gateway.yaml 
+  130  vim virtual-service-initial.yaml 
+  131  kubectl apply -f virtual-service-initial.yaml 
+  132  curl $GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"
+  133  istioctl proxy-config routes deploy/istio-ingressgateway.istio-system
+  134  istioctl proxy-config listener deploy/istio-ingressgateway.istio-system
+  135  vim virtual-service-webshop-80-20.yaml 
+  136  kubectl apply -f virtual-service-webshop-80-20.yaml 
+  137  curl $GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"
+  138  echo $GATEWAY_URL 
+  139  kubectl get svc -n istio-system 
+  140  istioctl proxy-config routes deploy/istio-ingressgateway.istio-system
+  141  istioctl proxy-config listener deploy/istio-ingressgateway.istio-system
+  142  kubectl get vs
+  143  kubectl describe vs
+  144  less destination-rule-webshop.yaml 
+  145  kubectl apply -f destination-rule-webshop.yaml 
+  146  curl $GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"
+  147  cat virtual-service-webshop-80-20.yaml 
+  148  vim destination-rule-webshop.yaml 
+  149  history
+
