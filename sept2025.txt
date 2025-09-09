@@ -1,0 +1,123 @@
+    1  minikube --help | less
+    2  minikube start --help
+    3  minikube start --memory=6G
+    4  minikube status
+    5  history
+    6  kubectl get all
+    7  ls
+    8  cd ..
+    9  git clone https://github.com/sandervanvugt/gitops
+   10  cd gitops/
+   11  ls
+   12  cd dockerfiledemo/
+   13  ls
+   14  vim Dockerfile 
+   15  docker build -t docker.io/sandervanvugt/helloworld .
+   16  docker images
+   17* 
+   18  vim Dockerfile 
+   19  docker build -t docker.io/sandervanvugt/helloworld .
+   20  docker run sandervanvugt/helloworld:latest 
+   21  sudo apt install docker-compose
+   22  cd ~/microservices/
+   23  ls
+   24  cat docker-compose.yml 
+   25  docker-compose up
+   26  arch
+   27  vim docker-compose.yml 
+   28  docker-compose up
+   29  history
+   30  kubectl create deploy myapp --image=nginx --replicas=3
+   31  kubectl get all
+   32  kubectl get all -o wide
+   33  kubectl expose deploy myapp --port=80
+   34  kubectl get all
+   35  kubectl describe svc myapp 
+   36  curl 10.104.36.145
+   37  kubectl edit svc myapp 
+   38  kubectl get all
+   39  minikube ip
+   40  curl 192.168.49.2:32085
+   41  history
+   42  ls
+   43  vim kustomization.yaml 
+   44  kubectl apply -f deployment.yaml 
+   45  kubectl apply -f service.yaml
+   46  kubectl get deploy --show-labels
+   47  kubectl apply -k .
+   48  kubectl get deploy --show-labels
+   49  ls
+   50  cat RESOURCE.TXT 
+   51  cd lesson6lab/
+   52  ls
+   53  vim kustomization.yaml 
+   54  vim mysql-deployment.yaml 
+   55  vim wordpress-deployment.yaml 
+   56  kubectl apply -k .
+   57  kubectl get secrets
+   58  kubectl get deploy
+   59  kubectl get pvc
+   60  kubectl get storageclass
+   61  kubectl get services
+   62  minikube service wordpress --url
+   63  cd 
+   64  history
+   65  kubectl delete all -A
+   66  kubectl delete all 
+   67  kubectl delete all --all
+   68  kubectl get all
+   69  curl -L https://istio.io/downloadIstio | sh -
+   70  cd istio-1.27.1/
+   71  sudo cp bin/istioctl /usr/bin/
+   72  istioctl install --set-profile=demo -y
+   73  istioctl install --set profile=demo -y
+   74  kubectl get all -n istio-system 
+   75  kubectl get crds
+   76  kubectl label namespace default istio-injection=enabled
+   77  history
+   78  kubectl get all -n istio-system 
+   79  kubectl edit svc -n istio-system istio-ingressgateway 
+   80  kubectl get all -n istio-system 
+   81  cd ../microservices/
+   82  cd myapp-test/
+   83  ls
+   84  cat version-one-cm.yaml 
+   85  kubectl apply -f version-one-cm.yaml 
+   86  kubectl apply -f version-two-cm.yaml 
+   87  kubectl apply -f version-three-cm.yaml 
+   88  vim version1-deploy.yaml 
+   89  kubectl apply -f version1-deploy.yaml 
+   90  kubectl apply -f version2-deploy.yaml 
+   91  kubectl apply -f version3-deploy.yaml 
+   92  vim webshop-svc.yaml 
+   93  kubectl get pods --show-labels
+   94  kubectl apply -f webshop-svc.yaml 
+   95  kubectl get svc
+   96  curl 192.168.49.2:32000
+   97  kubectl get all -n istio-system 
+   98  vim ../setup_istio_vars.sh 
+   99  source ../setup_istio_vars.sh 
+  100  echo $GATEWAY_URL 
+  101  vim webshop-gateway.yaml 
+  102  kubectl apply -f webshop-gateway.yaml 
+  103  cat virtual-service-initial.yaml 
+  104  kubectl apply -f virtual-service-initial.yaml 
+  105  curl $GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"
+  106  istioctl proxy-config routes deploy/istio-ingressgateway.istio-system
+  107  istioctl proxy-config listener deploy/istio-ingressgateway.istio-system
+  108  ls
+  109  vim virtual-service-webshop-80-20.yaml 
+  110  kubectl apply -f virtual-service-webshop-80-20.yaml 
+  111  kubectl apply -f destination-rule-webshop.yaml 
+  112  vim destination-rule-webshop.yaml 
+  113  curl $GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"
+  114  cd ..
+  115  cd ../istio-1.27.1/
+  116  kubectl apply -f samples/addons/
+  117  kubectl rollout status deployment/kiali -n istio-system
+  118  kubectl get all -n istio-system 
+  119  istioctl dashboard kiali
+  120  bg
+  121  for i in $(seq 1 200); do curl -s -o /dev/null http://$GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"; done
+  122  cd
+  123  history > /tmp/sept2025.txt
