@@ -1,0 +1,133 @@
+    1  docker 
+    2  ls
+    3  find . -name "Dockerfile"
+    4  cd ..
+    5  git clone https://github.com/sandervanvugt/ckad
+    6  cd ckad
+    7  ls
+    8  find . -name "Dockerfile"
+    9  cd dockerfile/
+   10  ls
+   11  vim Dockerfile 
+   12  docker build -t myapp .
+   13  docker images
+   14  docker run myapp
+   15  history
+   16  sudo apt update -y
+   17  sudo apt install docker-compose
+   18  sudo apt ugrade
+   19  cd ~/microservices/
+   20  ls
+   21  vim docker-compose.yml 
+   22  ./minikube-docker-setup.sh
+   23  minikube start --cni=calcio --memory=6G
+   24  minikube start --cni=calico --memory=6G
+   25  kubectl get all
+   26  kubectl create deploy web --image=nginx --replicas=3
+   27  kubectl get all
+   28  kubectl get pods -o wide
+   29  kubectl expose deployment web 
+   30  kubectl expose deployment web --port=80
+   31  kubectl get all
+   32  curl 10.109.106.33
+   33  kubectl edit svc web 
+   34  kubectl get all
+   35  curl 192.168.49.2:30231
+   36  history
+   37  cat deployment.yaml 
+   38  vim deployment.yaml 
+   39  vim service.yaml 
+   40  vim kustomization.yaml 
+   41  kubectl apply -k .
+   42  kubectl get all
+   43  kubectl get deploy --show-labels
+   44  history
+   45  kubectl get all
+   46  kubectl delete deploy test-nginx-friday20 web
+   47  kubectl delete svc test-nginx-friday20 web
+   48  history
+   49  kubectl get storageclass
+   50  cd lesson6lab/
+   51  ls
+   52  vim wordpress-deployment.yaml 
+   53  vim kustomization.yaml 
+   54  kubectl apply -k .
+   55  kubectl get secrets
+   56  kubectl get cm
+   57  kubectl get deploy
+   58  kubectl get pvc
+   59  kubectl get svc
+   60  minikube service wordpress --url
+   61  cd
+   62  history
+   63  cd microservices/
+   64  ls
+   65  less RESOURCE.TXT 
+   66  minikube addons list
+   67  kubectl delete all -A
+   68  kubectl delete all --all
+   69  cd
+   70  curl -L https://istio.io/downloadIstio | sh -
+   71  cd istio-1.28.3/
+   72  ls
+   73  sudo cp bin/istioctl /usr/bin/
+   74  istioctl install --set-profile=demo -y
+   75  istioctl install --set profile=demo -y
+   76  kubectl get ns
+   77  kubectl get all -n istio-system
+   78  kubectl get crds
+   79  kubectl label ns default istio-injection=enabled
+   80  history
+   81  kubectl get all -n istio-system 
+   82  cd ~/microservices/myapp-test/
+   83  ls
+   84  cat version-one-cm.yaml 
+   85  kubectl apply -f version-one-cm.yaml 
+   86  kubectl apply -f version-two-cm.yaml 
+   87  kubectl apply -f version-three-cm.yaml 
+   88  vim version1-deploy.yaml 
+   89  kubectl apply -f version1-deploy.yaml 
+   90  kubectl apply -f version2-deploy.yaml 
+   91  kubectl apply -f version3-deploy.yaml 
+   92  vim webshop-svc.yaml 
+   93  kubectl apply -f webshop-svc.yaml 
+   94  kubectl describe svc webshop 
+   95  kubectl get pods -o wide
+   96  kubectl get pods webshop-v1-7dd856f649-ghnws -o yaml | less
+   97  kubectl 192.168.49.2:32000
+   98  curl 192.168.49.2:32000
+   99  cd ..
+  100  vim setup_istio_vars.sh 
+  101  source setup_istio_vars.sh 
+  102  echo $GATEWAY_URL 
+  103  cd myapp-test/
+  104  vim webshop-gateway.yaml 
+  105  kubectl apply -f webshop-gateway.yaml 
+  106  kubectl get gateway
+  107  kubectl describe gateway
+  108  vim virtual-service-initial.yaml 
+  109  kubectl get svc
+  110  kubectl apply -f virtual-service-initial.yaml 
+  111  curl 192.168.49.2 -H "Host: webshop.svc.default.cluster.local"
+  112  curl $GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"
+  113  istioctl proxy-config routes deploy/istio-ingressgateway.istio-system
+  114  istioctl proxy-config listener deploy/istio-ingressgateway.istio-system
+  115  ls
+  116  vim virtual-service-webshop-80-20.yaml 
+  117  kubectl apply -f virtual-service-webshop-80-20.yaml 
+  118  vim destination-rule-webshop.yaml 
+  119  kubectl apply -f destination-rule-webshop.yaml 
+  120  curl $GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"
+  121  cd ~/istio-1.28.3/
+  122  kubectl apply -f samples/addons/
+  123  kubectl rollout status deployment/kiali -n istio-system 
+  124  minikube ssh
+  125  kubectl rollout status deployment/kiali -n istio-system 
+  126  istioctl dashboard kiali
+  127  bg
+  128  for i in $(seq 1 500); do curl -s -o /dev/null http://$GATEWAY_URL -H "Host: webshop.svc.default.cluster.local"; done
+  129  istioctl dashboard prometheus
+  130  cd
+  131  sudo apt install openssh-server
+  132  ip a
+  133  history > /tmp/feb26.txt
